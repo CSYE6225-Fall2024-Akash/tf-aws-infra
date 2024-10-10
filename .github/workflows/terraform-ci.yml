@@ -3,7 +3,7 @@ name: Terraform Format and Validate
 on:
   push:
     branches:
-      - '*'
+      - A03/workflow
   pull_request:
     branches:
       - main
@@ -28,4 +28,4 @@ jobs:
         run: terraform fmt -recursive
 
       - name: Run terraform validate
-        run: terraform validategit
+        run: terraform validate
