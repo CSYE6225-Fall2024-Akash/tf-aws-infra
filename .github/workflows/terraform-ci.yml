@@ -3,7 +3,7 @@ name: Terraform Format and Validate
 on:
   push:
     branches:
-      - "*"
+      - '*'
   pull_request:
     branches:
       - main
