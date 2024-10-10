@@ -8,6 +8,8 @@ on:
     branches:
       - main
 
+
+
 jobs:
   terraform:
     name: Terraform Format and Validate
