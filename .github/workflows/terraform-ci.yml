@@ -26,8 +26,5 @@ jobs:
         run: terraform fmt -recursive
 
       - name: Run terraform validate
-<<<<<<< HEAD
         run: terraform validate
-=======
-        run: terraform validate
->>>>>>> 8ac044097328d219df8b09edac208ced68a2b603
+
