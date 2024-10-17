@@ -20,3 +20,30 @@ variable "availability_zones" {
   description = "List of availability zones to use"
   type        = list(string)
 }
+
+variable "custom_ami_id" {
+  description = "ID of your custom AMI"
+  type        = string
+}
+
+variable "application_port" {
+  description = "Port on which your application runs"
+  type        = number
+}
+
+variable "environment" {
+  description = "Environment name"
+  type        = string
+}
+
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+}
+
+
+variable "allow_ssh_from" {
+  description = "Allow ssh from"
+  type        = string
+}
