@@ -47,3 +47,21 @@ variable "allow_ssh_from" {
   description = "Allow ssh from"
   type        = string
 }
+
+variable "db_password" {
+  type        = string
+  description = "Password for the RDS instance"
+  sensitive   = true
+}
+
+
+variable "db_port" {
+  type        = string
+  description = "port for the RDS instance"
+  sensitive   = true
+}
+
+# variable "private_subnet_ids" {
+#   type        = list(string)
+#   description = "List of private subnet IDs for the RDS instance"
+# }
