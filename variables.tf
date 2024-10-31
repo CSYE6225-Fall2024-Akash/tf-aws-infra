@@ -61,7 +61,7 @@ variable "db_port" {
   sensitive   = true
 }
 
-# variable "private_subnet_ids" {
-#   type        = list(string)
-#   description = "List of private subnet IDs for the RDS instance"
-# }
+variable "domain_name" {
+  type        = string
+  description = "Your domain name (e.g., example.com)"
+}
