@@ -4,11 +4,15 @@ data "aws_route53_zone" "domain" {
   private_zone = false
 }
 
-# Create A record
+# Create A record for the ALB
 resource "aws_route53_record" "app" {
   zone_id = data.aws_route53_zone.domain.zone_id
-  name    = data.aws_route53_zone.domain.name
+  name    = "${var.environment}.${var.domain_name}"
   type    = "A"
-  ttl     = "300"
-  records = [aws_instance.web_app.public_ip]
+
+  alias {
+    name                   = aws_lb.webapp.dns_name
+    zone_id                = aws_lb.webapp.zone_id
+    evaluate_target_health = true
+  }
 }

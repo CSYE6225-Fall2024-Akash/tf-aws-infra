@@ -27,32 +27,6 @@ resource "aws_iam_role_policy_attachment" "cloudwatch_agent" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
 
-# Additional CloudWatch Custom Policy
-resource "aws_iam_role_policy" "cloudwatch_policy" {
-  name = "${var.environment}-cloudwatch-policy"
-  role = aws_iam_role.webapp_role.id
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "cloudwatch:PutMetricData",
-          "ec2:DescribeVolumes",
-          "ec2:DescribeTags",
-          "logs:PutLogEvents",
-          "logs:DescribeLogStreams",
-          "logs:DescribeLogGroups",
-          "logs:CreateLogStream",
-          "logs:CreateLogGroup"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
-}
-
 # S3 Access Policy
 resource "aws_iam_role_policy" "s3_policy" {
   name = "${var.environment}-s3-policy"
