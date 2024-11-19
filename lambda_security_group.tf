@@ -24,5 +24,5 @@ resource "aws_security_group_rule" "lambda_to_rds" {
   to_port                  = var.db_port
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.lambda_sg.id
-  security_group_id        = aws_security_group.mydb.id  
+  security_group_id        = aws_security_group.mydb.id
 }
