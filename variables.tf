@@ -65,3 +65,14 @@ variable "domain_name" {
   type        = string
   description = "Your domain name (e.g., example.com)"
 }
+
+variable "sendgrid_api_key" {
+  type        = string
+  sensitive   = true
+  description = "SendGrid API Key"
+}
+
+variable "lambda_function_path" {
+  type        = string
+  description = "Path to Lambda function deployment package"
+}

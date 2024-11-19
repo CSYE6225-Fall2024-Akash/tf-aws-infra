@@ -34,7 +34,10 @@ echo "DB_PASSWORD=${var.db_password}" >> /opt/webapp/webapp/.env
 echo "DB_NAME=csye6225" >> /opt/webapp/webapp/.env
 echo "DB_PORT=${var.db_port}" >> /opt/webapp/webapp/.env
 echo "PORT=3000" >> /opt/webapp/webapp/.env
+echo "AWS_REGION=${var.region}" >> /opt/webapp/webapp/.env
+echo "DOMAIN_NAME=${var.environment}.${var.domain_name}" >> /opt/webapp/webapp/.env
 echo "S3_BUCKET_NAME=${aws_s3_bucket.app_bucket.bucket}" >> /opt/webapp/webapp/.env
+echo "USER_TOPIC_ARN=${aws_sns_topic.user_verification.arn}" >> /opt/webapp/webapp/.env  
 
 sudo chown -R csye6225:csye6225 /opt/webapp/webapp
 
