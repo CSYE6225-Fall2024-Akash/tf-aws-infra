@@ -7,9 +7,9 @@ resource "random_password" "db_password" {
 
 # DB Credentials Secret
 resource "aws_secretsmanager_secret" "db_credentials" {
-  name                    = "${var.environment}/database/credentials"
-  description             = "RDS database credentials"
-  kms_key_id              = aws_kms_key.secrets.arn
+  name        = "${var.environment}/database/credentials"
+  description = "RDS database credentials"
+  kms_key_id  = aws_kms_key.secrets.arn
 }
 
 resource "aws_secretsmanager_secret_version" "db_credentials" {
@@ -22,9 +22,9 @@ resource "aws_secretsmanager_secret_version" "db_credentials" {
 
 # SendGrid Credentials Secret
 resource "aws_secretsmanager_secret" "sendgrid" {
-  name                    = "${var.environment}/sendgrid/credentials"
-  description             = "SendGrid API credentials"
-  kms_key_id              = aws_kms_key.secrets.arn
+  name        = "${var.environment}/sendgrid/credentials"
+  description = "SendGrid API credentials"
+  kms_key_id  = aws_kms_key.secrets.arn
 }
 
 resource "aws_secretsmanager_secret_version" "sendgrid" {
