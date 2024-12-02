@@ -11,6 +11,11 @@ variable "public_subnet_cidrs" {
   type        = list(string)
 }
 
+variable "ssl_certificate_arn" {
+  description = "ARN of the imported SSL certificate"
+  type        = string
+}
+
 variable "private_subnet_cidrs" {
   description = "CIDR blocks for private subnets"
   type        = list(string)
@@ -48,11 +53,11 @@ variable "allow_ssh_from" {
   type        = string
 }
 
-variable "db_password" {
-  type        = string
-  description = "Password for the RDS instance"
-  sensitive   = true
-}
+# variable "db_password" {
+#   type        = string
+#   description = "Password for the RDS instance"
+#   sensitive   = true
+# }
 
 
 variable "db_port" {

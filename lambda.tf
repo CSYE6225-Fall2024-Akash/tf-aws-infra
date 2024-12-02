@@ -9,9 +9,7 @@ resource "aws_lambda_function" "email_verification" {
 
   environment {
     variables = {
-      SENDGRID_API_KEY = var.sendgrid_api_key
-      FROM_EMAIL       = "noreply@${var.environment}.${var.domain_name}"
-      DOMAIN_NAME      = "${var.environment}.${var.domain_name}"
+      SECRETS_ARN = aws_secretsmanager_secret.sendgrid.arn
     }
   }
 
@@ -62,3 +60,4 @@ resource "aws_iam_role_policy" "lambda_sns_policy" {
     ]
   })
 }
+
