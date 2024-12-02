@@ -48,3 +48,10 @@ Open terminal inside the src/terraform folder of the project directory.
 Run the below command the setup the plan for the resources: bash terraform plan
 
 Run the below command to create the resources: bash terraform apply
+
+
+### Certification installation
+
+Run the below command from certificate dir to import certificate to AWS:
+
+aws acm import-certificate --certificate fileb://certificate.pem --private-key fileb://private.pem --certificate-chain fileb://certificatechain.pem --region us-east-1
