@@ -23,14 +23,32 @@ resource "aws_launch_template" "webapp" {
       volume_size           = 25
       volume_type           = "gp2"
       delete_on_termination = true
+      encrypted             = true
+      kms_key_id            = aws_kms_key.ec2.arn
     }
   }
 
   user_data = base64encode(<<EOF
 #!/bin/bash
+
+# Install AWS CLI and jq if not present
+sudo apt-get update
+sudo apt-get install -y jq awscli
+
+# Get DB credentials from Secrets Manager
+DB_CREDS=$(aws secretsmanager get-secret-value \
+  --secret-id ${aws_secretsmanager_secret.db_credentials.id} \
+  --region ${var.region} \
+  --query 'SecretString' \
+  --output text)
+
+# Parse credentials
+DB_USER=$(echo $DB_CREDS | jq -r '.username')
+DB_PASSWORD=$(echo $DB_CREDS | jq -r '.password')
+
 echo "DB_HOST=${aws_db_instance.mydb.address}" >> /opt/webapp/webapp/.env
-echo "DB_USER=csye6225" >> /opt/webapp/webapp/.env
-echo "DB_PASSWORD=${var.db_password}" >> /opt/webapp/webapp/.env
+echo "DB_USER=$DB_USER" >> /opt/webapp/webapp/.env
+echo "DB_PASSWORD=$DB_PASSWORD" >> /opt/webapp/webapp/.env
 echo "DB_NAME=csye6225" >> /opt/webapp/webapp/.env
 echo "DB_PORT=${var.db_port}" >> /opt/webapp/webapp/.env
 echo "PORT=3000" >> /opt/webapp/webapp/.env

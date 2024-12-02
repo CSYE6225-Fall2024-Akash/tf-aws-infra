@@ -7,7 +7,9 @@ resource "aws_db_instance" "mydb" {
   storage_type           = "gp2"
   db_name                = "csye6225"
   username               = "csye6225"
-  password               = var.db_password
+  password               = random_password.db_password.result
+  storage_encrypted      = true
+  kms_key_id             = aws_kms_key.rds.arn
   parameter_group_name   = aws_db_parameter_group.custom.name
   skip_final_snapshot    = true
   vpc_security_group_ids = [aws_security_group.mydb.id]
