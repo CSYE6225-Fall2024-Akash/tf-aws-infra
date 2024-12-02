@@ -4,6 +4,7 @@ data "aws_caller_identity" "current" {}
 resource "aws_kms_key" "ec2" {
   description             = "KMS key for EC2 encryption"
   enable_key_rotation     = true
+  rotation_period_in_days = 90
   deletion_window_in_days = 7
 }
 
@@ -60,6 +61,7 @@ resource "aws_kms_key_policy" "ec2_key_policy" {
 resource "aws_kms_key" "rds" {
   description             = "KMS key for RDS encryption"
   enable_key_rotation     = true
+  rotation_period_in_days = 90
   deletion_window_in_days = 7
 }
 
@@ -100,6 +102,7 @@ resource "aws_kms_key_policy" "rds_key_policy" {
 resource "aws_kms_key" "s3" {
   description             = "KMS key for S3 encryption"
   enable_key_rotation     = true
+  rotation_period_in_days = 90
   deletion_window_in_days = 7
 }
 
@@ -152,6 +155,7 @@ resource "aws_kms_key_policy" "s3_key_policy" {
 resource "aws_kms_key" "secrets" {
   description             = "KMS key for Secrets Manager"
   enable_key_rotation     = true
+  rotation_period_in_days = 90
   deletion_window_in_days = 7
 }
 
